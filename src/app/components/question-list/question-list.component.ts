@@ -32,14 +32,6 @@ export class QuestionListComponent implements OnInit {
   questions: Question[] = [];
   searchTerm: string = '';
   filterBy: 'mostAnswered' | 'unanswered' | 'all' = 'all';
-  trendingTopics = [
-    'Angular 15 Released!',
-    'How to Optimize Angular Apps',
-    'Latest Trends in Frontend Development',
-    'Understanding Reactive Programming',
-    'Node.js Performance Tips'
-  ];
-
 
   constructor(
     private questionService: QuestionService,
@@ -58,8 +50,6 @@ export class QuestionListComponent implements OnInit {
         console.error('Error fetching questions', err);
       }
     });
-    
-
   }
 
   // Fetch answers for a specific question

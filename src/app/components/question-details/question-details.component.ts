@@ -38,11 +38,7 @@ export class QuestionDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private questionService: QuestionService,
-    
-    private answerService: AnswerService
-    
-  
-    
+    private answerService: AnswerService  
   ) {}
 
   ngOnInit(): void {
@@ -55,7 +51,7 @@ export class QuestionDetailsComponent implements OnInit {
     this.http.get(`http://localhost:3000/questions/${this.questionId}`).subscribe({
       next: (data: any) => {
         this.question = data;
-        console.log('📦 Question object:', this.question);  // 👈 Add this line
+        console.log('📦 Question object:', this.question); 
       },
       error: err => console.error('Error fetching question', err)
     });
@@ -63,10 +59,9 @@ export class QuestionDetailsComponent implements OnInit {
 
   fetchAnswers() {
     console.log('Fetching answers for question ID:', this.questionId);
-  
     this.answerService.getAnswersByQuestionId(this.questionId).subscribe({
       next: (data) => {
-        console.log('Received answers from backend:', data); // 🔍 Add this
+        console.log('Received answers from backend:', data); 
         this.answers = data;
       },
       error: (err) => {
@@ -75,17 +70,13 @@ export class QuestionDetailsComponent implements OnInit {
     });
   }
   
-
-
   onAnswerSubmitted() {
     this.fetchAnswers();
     alert('Answer submitted successfully!');
-    // Optional: refresh answers list if implemented
   }
 
   submitAnswer(): void {
     if (!this.answerText.trim()) return;
-
     this.answerService.submitAnswer(this.questionId, this.answerText).subscribe({
       next: () => {
         this.showSuccessMessage = true;

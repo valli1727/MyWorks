@@ -5,7 +5,6 @@ import { promises } from 'dns';
 const router = express.Router();
 
 // GET all chat messages
-// GET all chat messages
 router.get('/', async (req, res) => {
     try {
       const [rows] = await pool.query('SELECT * FROM chat_messages ORDER BY created_at ASC');
